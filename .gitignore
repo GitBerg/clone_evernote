@@ -1,4 +1,5 @@
 /node_modules
 /javascript_note_api/node_modules
+//javascript_note/node_modules
 
 .env
