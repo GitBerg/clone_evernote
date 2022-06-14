@@ -7,14 +7,20 @@ import LoginScreen from './screens/auth/login'
 import NotesIndexScreen from './screens/notes/index'
 import UserEditScreen from './screens/users/edit'
 
+import PrivateRouter from './components/auth/private_router'
+
 const AppRoutes = () => (
     <BrowserRouter>
         <Routes>
-            <Route exact path="/" element={<HomeScreen/>} />
-            <Route exact path="/register" element={<RegisterScreen/>} />
-            <Route exact path="/login" element={<LoginScreen/>} />
-            <Route exact path="/notes" element={<NotesIndexScreen/>} />
-            <Route exact path="/users/edit" element={<UserEditScreen/>} />
+            <Route exact path="/" element={<HomeScreen />} />
+            <Route exact path="/register" element={<RegisterScreen />} />
+            <Route exact path="/login" element={<LoginScreen />} />
+            <Route element={<PrivateRouter />}>
+                <Route exact path="/notes" element={<NotesIndexScreen />} />
+            </Route>
+            <Route element={<PrivateRouter />}>
+                <Route exact path="/users/edit" element={<UserEditScreen />} />
+            </Route>
         </Routes>
     </BrowserRouter>
 )

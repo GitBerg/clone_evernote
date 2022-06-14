@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Button, Field, Control, Input, Column, Help, Label } from "rbx";
-import { useNavigate } from 'react-router-dom';
 import UserService from '../../../services/users'
+import { useNavigate } from 'react-router-dom';
 
-function RegisterForm() {
-    const [name, setName] = useState("");
+function LoginForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    // const [RedirectToRegister, setRedirectToRegister] = useState(false);
+    // const [RedirectToNotes, setRedirectToNotes] = useState(false);
     const [error, setError] = useState(false);
 
     const navigate = useNavigate();
@@ -14,30 +15,18 @@ function RegisterForm() {
     const HandleSubmit = async (evt) => {
         evt.preventDefault()
         try {
-            const user = await UserService.register({name: name, email: email, password: password})
-            navigate('/login');
+            const user = await UserService.login({email: email, password: password})
+            navigate('/notes');
         } catch (error) {
             setError(true);
         }
     }
 
     return (
-        <>
+        <Fragment>
             <Column.Group centered>
                 <form onSubmit={HandleSubmit}>
                     <Column size={12}>
-                        <Field>
-                            <Label size="small">Name:</Label>
-                            <Control>
-                                <Input
-                                    type="name"
-                                    required
-                                    name="name"
-                                    value={name}
-                                    onChange={e => setName(e.target.value)}
-                                />
-                            </Control>
-                        </Field>
                         <Field>
                             <Label size="small">Email:</Label>
                             <Control>
@@ -66,21 +55,20 @@ function RegisterForm() {
                             <Control>
                                 <Column.Group breakpoint="mobile">
                                     <Column>
-                                        <span className="button is-white has-text-custom-purple"
-                                            onClick={() => navigate('/login')} >Login or</span>
+                                        <span className="button is-white has-text-custom-purple" onClick={() => navigate('/register')}>Register or</span>
                                     </Column>
                                     <Column>
-                                        <Button color="custom-purple" outlined>Register</Button>
+                                        <Button color="custom-purple" outlined>Login</Button>
                                     </Column>
                                 </Column.Group>
                             </Control>
-                            {error && <Help color="danger">Email or Password invalid</Help>}
                         </Field>
+                        {error && <Help color="danger">Email or Password invalid</Help>}
                     </Column>
                 </form>
             </Column.Group>
-        </>
+        </Fragment>
     )
 }
 
-export default RegisterForm;
+export default LoginForm;
