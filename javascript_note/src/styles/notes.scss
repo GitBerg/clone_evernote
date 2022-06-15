@@ -1,0 +1,31 @@
+@import './custom_colors.scss';
+
+.notes {
+    height: calc(100% - 70px);
+    margin: 0;
+   
+}
+
+.bm-menu {
+    background-color: white;
+    padding-top: 10px;
+   
+}
+
+.notes-editor{
+    padding: 0;
+    height: calc(100% - 43px);
+  
+    .quill{
+      height: 100%;
+    }
+  }
+
+.item-list{
+  margin: 15px 0;
+  padding: 10px;
+}
+
+.item-list.activate{
+  background-color: #e3e3e3;
+}
