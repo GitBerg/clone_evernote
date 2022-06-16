@@ -1,5 +1,4 @@
-import React, { Fragment } from 'react';
-import { Column, Section, Title, Container, Card, Button } from "rbx";
+import { Column, Section, Title, Container, Card } from "rbx";
 import "../../../styles/users.scss";
 import HeaderLogged from "../../../components/header_logged";
 
