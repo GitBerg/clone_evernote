@@ -4,6 +4,7 @@ import '../../styles/notes.scss'
 import { push as Menu } from 'react-burger-menu'
 import List from "./list";
 import Editor from "./editor";
+import Search from './search'
 import NoteService from '../../services/notes';
 
 const Notes = (props) => {
@@ -20,19 +21,33 @@ const Notes = (props) => {
         if (response.data.length >= 1) {
             setNotes(response.data.reverse())
             setCurrentNote(response.data[0])
-        }else{
+        } else {
             setNotes([])
         }
     }
 
-    const createNote = async () =>{
+    const createNote = async () => {
         await NoteService.create()
         fetchNotes();
     }
 
-    const deleteNote = async (note) =>{
+    const deleteNote = async (note) => {
         await NoteService.delete(note._id)
         fetchNotes();
+    }
+
+    const updateNote = async (oldNote, params) => {
+        const updatedNote = await NoteService.update(oldNote._id, params);
+        const index = notes.indexOf(oldNote);
+        const newNotes = notes;
+        newNotes[index] = updatedNote.data;
+        setNotes(newNotes);
+        setCurrentNote(updatedNote.data);
+    }
+
+    const searchNotes = async (query) => {
+        const response = await NoteService.search(query);
+        setNotes(response.data)
     }
 
     const selectNote = (id) => {
@@ -56,7 +71,7 @@ const Notes = (props) => {
                 >
                     <Column.Group>
                         <Column size={10} offset={1}>
-                            Search...
+                            <Search searchNotes={searchNotes} fetchNotes={fetchNotes} />
                         </Column>
                     </Column.Group>
                     <List
@@ -65,12 +80,13 @@ const Notes = (props) => {
                         current_note={current_note}
                         createNote={createNote}
                         deleteNote={deleteNote} />
-                        
+
                 </Menu>
-
-
                 <Column size={12} className="notes-editor" id="notes-editor">
-                    <Editor note={current_note}/>
+                    <Editor
+                        note={current_note}
+                        updateNote={updateNote}
+                    />
                 </Column>
             </Column.Group>
         </>

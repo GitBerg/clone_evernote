@@ -62,7 +62,7 @@ const HeaderLogged = (props) => {
                         <Dropdown>
                             <Dropdown.Trigger>
                                 <Button className="button is-white" outlined>
-                                    <span>{getUserName()}Gutemberg ▼</span>
+                                    <span>{getUserName()} ▼</span>
                                 </Button>
                             </Dropdown.Trigger>
                             <Dropdown.Menu>

@@ -20,8 +20,8 @@ function ListNotes(props) {
             </Column.Group>
             <List className="notes-list">
                 {props.notes.map((item, key) =>
-                <div className={`item-list ${item === props.current_note? 'activate':''}`}>
-                    <List.Item key={key} onClick={() => props.selectNote(item._id)} active={item === props.current_note}>
+                <div className={`item-list ${item === props.current_note? 'activate':''}`} key={key}>
+                    <List.Item onClick={() => props.selectNote(item._id)} active={item === props.current_note}>
                         <Title size={6}>
                             {item.title.replace(/(<([^>]+)>)/ig, "").substring(0, 15)}
                         </Title>
