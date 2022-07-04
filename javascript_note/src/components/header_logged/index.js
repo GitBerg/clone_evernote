@@ -13,6 +13,7 @@ const HeaderLogged = (props) => {
 
     const getUserName = () => {
         const username = JSON.parse(localStorage.getItem('user'));
+        console.log(username)
         return username.name;
     }
 
