@@ -1,0 +1,13 @@
+{
+    "name": "clone-evernote-api",
+    "version": "2",
+    "public": true,
+    "build": {
+        "src":"./app.js",
+        "use": "@vercel/node"
+    },
+    "route": {
+        "src": "/(.*)",
+        "dest": "app.js"
+    }
+}
