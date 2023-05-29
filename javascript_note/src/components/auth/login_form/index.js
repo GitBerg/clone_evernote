@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { Button, Field, Control, Input, Column, Help, Label } from "rbx";
-import UserService from '../../../services/users'
+import UsersService from '../../../services/users'
 import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
@@ -15,7 +15,7 @@ function LoginForm() {
     const HandleSubmit = async (evt) => {
         evt.preventDefault()
         try {
-            const user = await UserService.login({email: email, password: password})
+            const user = await UsersService.login({email: email, password: password})
             navigate('/notes');
         } catch (error) {
             setError(true);

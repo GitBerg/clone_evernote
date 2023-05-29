@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Field, Control, Input, Column, Help, Label } from "rbx";
 import { useNavigate } from 'react-router-dom';
-import UserService from '../../../services/users'
+import UsersService from '../../../services/users'
 
 function RegisterForm() {
     const [name, setName] = useState("");
@@ -14,7 +14,7 @@ function RegisterForm() {
     const HandleSubmit = async (evt) => {
         evt.preventDefault()
         try {
-            const user = await UserService.register({name: name, email: email, password: password})
+            const user = await UsersService.register({name: name, email: email, password: password})
             navigate('/login');
         } catch (error) {
             setError(true);

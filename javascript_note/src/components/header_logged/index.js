@@ -1,7 +1,7 @@
 import { Navbar, Column, Button, Dropdown } from 'rbx';
 import logoImage from '../../assets/images/logo-white.png'
 import "../../styles/header.scss";
-import UserService from '../../services/users';
+import UsersService from '../../services/users';
 import { Navigate, Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faList } from '@fortawesome/free-solid-svg-icons'
@@ -18,7 +18,7 @@ const HeaderLogged = (props) => {
     }
 
     const logOut = async () => {
-        await UserService.logout();
+        await UsersService.logout();
         setNavigateToHome(true);
     }
 
