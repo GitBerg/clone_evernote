@@ -14,9 +14,10 @@ function RegisterForm() {
     const HandleSubmit = async (evt) => {
         evt.preventDefault()
         try {
-            const user = await UsersService.register({name: name, email: email, password: password})
+            await UsersService.register({name: name, email: email, password: password})
             navigate('/login');
         } catch (error) {
+            console.log(error)
             setError(true);
         }
     }
